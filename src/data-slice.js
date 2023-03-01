@@ -5,11 +5,8 @@ const initialState = {
 const dataSlice = createSlice({
   name: "data",
   initialState,
-  extraReducers: builder => {
-    builder.addCase((state, action) => {
-      state.loading = false;
-      state.trips = action.payload.data;
-    });
+  reducers: {
+    addDataReducer: {},
   },
 });
 export const { clearMessage, clearError } = tripSlice.actions;

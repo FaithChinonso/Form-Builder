@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Draggable from "./Draggable";
 import Droppable from "./Droppable";
 
-const Builder = () => {
+const Builder = ({ setShowBuilder }) => {
   const dragItem = useRef();
   const dragOverItem = useRef();
   const [data, setData] = useState([]);
@@ -40,22 +40,28 @@ const Builder = () => {
 
     setData(newData);
   };
+  const previewHandler = () => {
+    setShowBuilder(false);
+  };
 
   return (
     <div>
       <div className="flex justify-between w-full border-b border-lightGrey py-4">
         <h1 className="text-2xl text-black">Onboarding Forms</h1>
-        <div className="bg-primaryDark text-white text-sm rounded-md text-center px-2 py-4">
+        <div
+          className="bg-primaryDark text-white text-sm rounded-md text-center px-2 py-4"
+          onClick={previewHandler}
+        >
           Create Form
         </div>
       </div>
       <div className="flex w-full relative space-x-4">
         <div>
-          <div className="flex justify-between w-[200px]">
+          <div className="flex justify-between w-[200px] my-2">
             <h3 className="text-xs">Question Type</h3>
             <h4 className="text-xs text-green-400">Add Question Type</h4>
           </div>
-          <div>
+          <div className="max-h-[100%] overflow-scroll">
             <Draggable
               handleStart={handleDragStart}
               handleEnd={handleDragEnd}
@@ -119,7 +125,7 @@ const Builder = () => {
           </div>
         </div>
         <div
-          className="relative grid grid-cols-3 justify-center items-center space-x-3 w-full"
+          className="relative grid grid-cols-2 justify-center space-x-3 w-full"
           onDragOver={e => {
             e.preventDefault();
           }}
@@ -133,95 +139,106 @@ const Builder = () => {
                   onDragEnd={drop}
                   key={index}
                   draggable
-                  className="flex flex-col relative"
+                  className="flex  relative p-2 h-[100px]"
                 >
-                  <label>{item.text}</label>
-                  {item.text === "First Name" && (
-                    <input
-                      placeholder={item.text}
-                      type="text"
-                      className="border border-lightGrey rounded-md p-2"
-                    />
-                  )}
-                  {item.text === "Last Name" && (
-                    <input
-                      placeholder={item.text}
-                      type="text"
-                      className="border border-lightGrey rounded-md p-2"
-                    />
-                  )}
-                  {item.text === "House Address" && (
-                    <input
-                      placeholder={item.text}
-                      type="text"
-                      className="border border-lightGrey rounded-md p-2"
-                    />
-                  )}
-                  {item.text === "Email Address" && (
-                    <input
-                      placeholder={item.text}
-                      type="email"
-                      className="border border-lightGrey rounded-md p-2"
-                    />
-                  )}
-                  {item.text === "Password" && (
-                    <input
-                      placeholder={item.text}
-                      type="password"
-                      className="border border-lightGrey rounded-md p-2"
-                    />
-                  )}
-                  {item.text === "Date" && (
-                    <input
-                      placeholder={item.text}
-                      type="date"
-                      className="border border-lightGrey rounded-md p-2"
-                    />
-                  )}
-                  {item.text === "Phone Number" && (
-                    <input
-                      placeholder={item.text}
-                      type="text"
-                      className="border border-lightGrey rounded-md p-2"
-                    />
-                  )}
-                  {item.text === "Text Area" && (
-                    <textarea
-                      placeholder={item.text}
-                      className="border border-lightGrey rounded-md p-2"
-                    />
-                  )}
-                  {item.text === "Profile Picture" && (
-                    <input
-                      placeholder={item.text}
-                      type="file"
-                      className="border border-lightGrey rounded-md p-2"
-                    />
-                  )}
-                  {item.text === "File Upload" && (
-                    <input
-                      placeholder={item.text}
-                      type="file"
-                      className="border border-lightGrey rounded-md p-2"
-                    />
-                  )}
-                  {item.text === "State Of Origin" && (
-                    <select name="state" id="state">
-                      <option value="Lagos">Lagos</option>
-                      <option value="Abuja">Abuja</option>
-                      <option value="River">Rivers</option>
-                      <option value="Delta">Delta</option>
-                    </select>
-                  )}
-                  {item.text === "Nationality" && (
-                    <select name="Nationality" id="Nationality">
-                      <option value="Nigerian">Nigerian</option>
-                      <option value="Ghanian">Ghanian</option>
-                      <option value="Kenyan">Kenyan</option>
-                    </select>
-                  )}
+                  {" "}
+                  <div className="flex flex-col flex-1 mr-3">
+                    <label>{item.text}</label>
+                    {item.text === "First Name" && (
+                      <input
+                        placeholder={item.text}
+                        type="text"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      />
+                    )}
+                    {item.text === "Last Name" && (
+                      <input
+                        placeholder={item.text}
+                        type="text"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      />
+                    )}
+                    {item.text === "House Address" && (
+                      <input
+                        placeholder={item.text}
+                        type="text"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      />
+                    )}
+                    {item.text === "Email Address" && (
+                      <input
+                        placeholder={item.text}
+                        type="email"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      />
+                    )}
+                    {item.text === "Password" && (
+                      <input
+                        placeholder={item.text}
+                        type="password"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      />
+                    )}
+                    {item.text === "Date" && (
+                      <input
+                        placeholder={item.text}
+                        type="date"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      />
+                    )}
+                    {item.text === "Phone Number" && (
+                      <input
+                        placeholder={item.text}
+                        type="text"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      />
+                    )}
+                    {item.text === "Text Area" && (
+                      <textarea
+                        placeholder={item.text}
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      />
+                    )}
+                    {item.text === "Profile Picture" && (
+                      <input
+                        placeholder={item.text}
+                        type="file"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      />
+                    )}
+                    {item.text === "File Upload" && (
+                      <input
+                        placeholder={item.text}
+                        type="file"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      />
+                    )}
+                    {item.text === "State Of Origin" && (
+                      <select
+                        name="state"
+                        id="state"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      >
+                        <option value="Lagos">Lagos</option>
+                        <option value="Abuja">Abuja</option>
+                        <option value="River">Rivers</option>
+                        <option value="Delta">Delta</option>
+                      </select>
+                    )}
+                    {item.text === "Nationality" && (
+                      <select
+                        name="Nationality"
+                        id="Nationality"
+                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
+                      >
+                        <option value="Nigerian">Nigerian</option>
+                        <option value="Ghanian">Ghanian</option>
+                        <option value="Kenyan">Kenyan</option>
+                      </select>
+                    )}
+                  </div>
                   <div
-                    className="bg-red-200 font-bold flex justify-center items-center text-sm text-white w-6 h-6 rounded-full text-center absolute right-0 top-1/2 translate-y-[50%]"
+                    className="bg-lightGrey font-bold flex justify-center items-center text-xs text-white w-4 h-4 rounded-full text-center absolute right-0 top-1/2 -translate-y-[50%]"
                     onClick={() => removeHandler(index)}
                   >
                     X
