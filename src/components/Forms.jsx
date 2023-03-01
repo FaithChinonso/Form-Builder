@@ -7,7 +7,7 @@ const Forms = () => {
   const { forms } = useSelector(state => state.data);
   return (
     <div>
-      <div>Forms</div>
+      <div className="my-6 font-bold">Forms</div>
       <div className="flex">
         <div className="w-[200px]">
           {" "}
@@ -15,7 +15,7 @@ const Forms = () => {
             forms.map(form => (
               <div
                 onClick={() => setFormData(form.form)}
-                className="bg-slate-400 mb-2 w-full rounded-sm"
+                className="bg-slate-100 mb-2 w-full rounded-sm p-2"
               >
                 {form.name}
               </div>
