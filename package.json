@@ -1,6 +1,5 @@
 {
   "name": "formbuilder",
-  "homepage": "https://faithchinonso.github.io/Form-Builder/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
