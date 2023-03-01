@@ -1,11 +1,18 @@
 import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { addFormReducer } from "./reducers/data-slice";
 import Draggable from "./Draggable";
 import Droppable from "./Droppable";
+import DynamicInput from "./DynamicInput";
 
 const Builder = ({ setShowBuilder }) => {
+  const dispatch = useDispatch();
   const dragItem = useRef();
   const dragOverItem = useRef();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([
+    { text: "First Name" },
+    { text: "Last Name" },
+  ]);
   const handleDragStart = e => {
     console.log("Started");
   };
@@ -34,14 +41,15 @@ const Builder = ({ setShowBuilder }) => {
     setData(copyListItems);
   };
   const removeHandler = i => {
+    if (i === 0 || i === 1) return;
     const newData = [...data];
-
     newData.splice(i, 1);
-
     setData(newData);
   };
   const previewHandler = () => {
+    if (data.length === 0) return;
     setShowBuilder(false);
+    dispatch(addFormReducer(data));
   };
 
   return (
@@ -52,7 +60,7 @@ const Builder = ({ setShowBuilder }) => {
           className="bg-primaryDark text-white text-sm rounded-md text-center px-2 py-4"
           onClick={previewHandler}
         >
-          Create Form
+          Preview Form
         </div>
       </div>
       <div className="flex w-full relative space-x-4">
@@ -144,98 +152,7 @@ const Builder = ({ setShowBuilder }) => {
                   {" "}
                   <div className="flex flex-col flex-1 mr-3">
                     <label>{item.text}</label>
-                    {item.text === "First Name" && (
-                      <input
-                        placeholder={item.text}
-                        type="text"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      />
-                    )}
-                    {item.text === "Last Name" && (
-                      <input
-                        placeholder={item.text}
-                        type="text"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      />
-                    )}
-                    {item.text === "House Address" && (
-                      <input
-                        placeholder={item.text}
-                        type="text"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      />
-                    )}
-                    {item.text === "Email Address" && (
-                      <input
-                        placeholder={item.text}
-                        type="email"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      />
-                    )}
-                    {item.text === "Password" && (
-                      <input
-                        placeholder={item.text}
-                        type="password"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      />
-                    )}
-                    {item.text === "Date" && (
-                      <input
-                        placeholder={item.text}
-                        type="date"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      />
-                    )}
-                    {item.text === "Phone Number" && (
-                      <input
-                        placeholder={item.text}
-                        type="text"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      />
-                    )}
-                    {item.text === "Text Area" && (
-                      <textarea
-                        placeholder={item.text}
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      />
-                    )}
-                    {item.text === "Profile Picture" && (
-                      <input
-                        placeholder={item.text}
-                        type="file"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      />
-                    )}
-                    {item.text === "File Upload" && (
-                      <input
-                        placeholder={item.text}
-                        type="file"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      />
-                    )}
-                    {item.text === "State Of Origin" && (
-                      <select
-                        name="state"
-                        id="state"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      >
-                        <option value="Lagos">Lagos</option>
-                        <option value="Abuja">Abuja</option>
-                        <option value="River">Rivers</option>
-                        <option value="Delta">Delta</option>
-                      </select>
-                    )}
-                    {item.text === "Nationality" && (
-                      <select
-                        name="Nationality"
-                        id="Nationality"
-                        className="border border-lightGrey rounded-md p-2 w-6/7 mt-1"
-                      >
-                        <option value="Nigerian">Nigerian</option>
-                        <option value="Ghanian">Ghanian</option>
-                        <option value="Kenyan">Kenyan</option>
-                      </select>
-                    )}
+                    <DynamicInput inputType={item.text} />
                   </div>
                   <div
                     className="bg-lightGrey font-bold flex justify-center items-center text-xs text-white w-4 h-4 rounded-full text-center absolute right-0 top-1/2 -translate-y-[50%]"

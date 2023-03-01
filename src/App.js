@@ -4,6 +4,7 @@ import ParentContainer from "./components/ParentContainer";
 import Builder from "./components/Builder";
 import { useState } from "react";
 import PreviewPage from "./components/PreviewPage";
+import Modal from "./components/Modal";
 
 function App() {
   const [showBuilder, setShowBuilder] = useState(true);
@@ -14,6 +15,7 @@ function App() {
       ) : (
         <PreviewPage setShowBuilder={setShowBuilder} />
       )}
+      <Modal />
     </ParentContainer>
   );
 }
