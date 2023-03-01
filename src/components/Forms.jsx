@@ -3,8 +3,8 @@ import DynamicInput from "./DynamicInput";
 import { useDispatch, useSelector } from "react-redux";
 
 const Forms = () => {
-  const [formData, setFormData] = useState("");
   const { forms } = useSelector(state => state.data);
+  const [formData, setFormData] = useState(forms[0].form);
   return (
     <div>
       <div className="my-6 font-bold">Forms</div>
