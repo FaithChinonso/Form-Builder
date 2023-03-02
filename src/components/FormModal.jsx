@@ -28,12 +28,13 @@ const FormModal = ({ submitFormHandler }) => {
         >
           Close
         </div>
-        <div
-          className="bg-primaryDark text-white rounded-xl px-4 py-2 flex justify-center items-center w-[100px]"
+        <button
+          className="bg-primaryDark text-white rounded-xl px-4 py-2 flex justify-center items-center w-[100px] disabled:opacity-20"
           onClick={() => submitFormHandler(name)}
+          disabled={!name.length > 0}
         >
           Submit
-        </div>
+        </button>
       </div>
     </div>
   );

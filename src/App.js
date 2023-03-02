@@ -28,7 +28,14 @@ function App() {
           }
           exact
         />
-        <Route path="/forms" element={<Forms />} />
+        <Route
+          path="/forms"
+          element={
+            <div>
+              <Forms />
+            </div>
+          }
+        />
       </Routes>
     </ParentContainer>
   );
