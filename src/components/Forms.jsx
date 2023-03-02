@@ -11,15 +11,18 @@ const Forms = () => {
       <div className="flex">
         <div className="w-[200px]">
           {" "}
-          {forms &&
-            forms.map(form => (
+          {forms ? (
+            forms?.map(form => (
               <div
                 onClick={() => setFormData(form.form)}
                 className="bg-slate-100 mb-2 w-full rounded-sm p-2"
               >
                 {form.name}
               </div>
-            ))}
+            ))
+          ) : (
+            <div></div>
+          )}
         </div>
         <div
           className="relative grid grid-cols-2 justify-center space-x-3 w-full"
