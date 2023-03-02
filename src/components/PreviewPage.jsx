@@ -25,6 +25,7 @@ const PreviewPage = ({ setShowBuilder }) => {
       })
     );
     dispatch(closeModal());
+    setShowBuilder(true);
   };
   return (
     <div>

@@ -133,7 +133,7 @@ const Builder = ({ setShowBuilder }) => {
           </div>
         </div>
         <div
-          className="relative grid grid-cols-2 justify-center space-x-3 w-full"
+          className="relative grid grid-cols-2 justify-center space-x-3 w-full mt-4"
           onDragOver={e => {
             e.preventDefault();
           }}

@@ -7,7 +7,7 @@ const ParentContainer = ({ children }) => {
     <div className="h-screen w-screen overflow-hidden relative">
       <SideNav />
       <Header />
-      <div className="mt-[90px] ml-[300px] w-[calc(100vw-300px) max-h-[calc(100vh-90px)] min-h-[calc(100vh-90px)] px-5 overflow-auto">
+      <div className="mt-[60px] ml-[200px] w-[calc(100vw-200px) max-h-[calc(100vh-60px)] min-h-[calc(100vh-90px)] px-5 overflow-auto">
         {children}
       </div>
     </div>
